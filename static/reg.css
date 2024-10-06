@@ -1,0 +1,21 @@
+body {
+    background-color: blanchedalmond;
+}
+h1 {
+    text-align: center;
+}
+
+#reg {
+    border-radius: 20px;
+    padding: 10px;
+    background-color: #FFD09B;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;   
+}
+
+#reg button {
+    border-radius: 10px;
+    padding: 3px 50px;
+}
