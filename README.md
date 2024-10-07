@@ -1,11 +1,11 @@
 # Membership System
 Workflow new folder
-1. Buat folder di www
+1. Buat folder di directorymu
 2. Pake git bash cd ke folder tersebut (cd path)
-3. git clone https://github.com/GeryYulianto/SeniorExperts
+3. git clone https://github.com/GeryYulianto/membershipSystem
 
 Workflow push git
-1. pastiin udah di folder hasil clone (cd yourpath/SeniorExperts)
+1. pastiin udah di folder hasil clone (cd yourpath/membershipSystem)
 2. git pull origin main (buat pastiin file kamu yang terupdate)
 3. Bikin branch baru (git checkout -b name-branch)
 4. git push origin new-branch
