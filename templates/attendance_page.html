@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <!-- Jinja2 syntax -->
+    <link rel="stylesheet" href="{{url_for('static', filename='attendance.css')}}">  
+    <title>Attendance</title>
+{% endblock %}
+
+{% block body %}
+<h1>Attendance Page</h1>
+<form action="/attendance" method="POST">
+    <section id="attend">
+        <div class="input-icon">
+            <i class="fa-solid fa-id-card"></i>
+            <input type="text" name="id" id="id" placeholder="Search by ID">
+        </div>
+        <div class="input-icon">
+            <i class="fa-solid fa-user"></i>
+            <input type="text" name="name" id="name" placeholder="Search by Name">
+        </div>
+        <button type="submit">Search</button>
+    </section>
+</form>
+{% endblock %}

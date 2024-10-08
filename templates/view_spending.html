@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <!-- Jinja2 syntax -->
+    <link rel="stylesheet" href="{{url_for('static', filename='view_spending.css')}}">  
+    <title>View Spendings</title>
+{% endblock %}
+
+{% block body %}
+<div class="content"> 
+    <h1 style="text-align: center;">View Spendings</h1>
+
+    {% if spendings|length < 1 %}
+    <h4 style="text-align: center;">Belum Ada Pengeluaran</h4>
+    {% else %}
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Member Id</th>
+            <th>Besar Pengeluaran</th>
+            <th>Tanggal Pengeluaran</th>
+        </tr>
+        {% for spending in spendings %}
+            <tr>
+                <td>{{ spending.spending_id }}</td>
+                <td>{{ spending.id }}</td>
+                <td>{{ spending.spend }}</td>
+                <td>{{ spending.spending_date.date() }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+    <a href="{{ url_for('homepage') }}" class="button">Kembali ke Menu Utama</a>
+</div>
+{% endblock %}
