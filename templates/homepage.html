@@ -4,35 +4,22 @@
     <!-- Ganti CSS nya Kalo Mau  -->
 
     <!-- Jinja2 syntax -->
-    <link rel="stylesheet" href="{{url_for('static', filename='reg.css')}}">  
+    <link rel="stylesheet" href="{{url_for('static', filename='home.css')}}">  
 
     <!-- Normal syntax -->
     <!-- <link rel="stylesheet" href="../static/reg.css"> -->
 
-    <title>Register</title>
+    <title>Homepage</title>
 {% endblock %}
 
 {% block body %}
-<h1>Register Page</h1>
-<form action="/register" method="post">
-    <section id="reg">
-        <div>
-            <i class="fa-solid fa-phone"></i>
-            <input type="text" name="phone" id="" placeholder="Input Nomor Hp">
-        </div>
-        <div class="">
-            <i class="fa-solid fa-user"></i>
-            <input type="text" name="name" id="" placeholder="Input Nama Lengkap">
-        </div>
-        <div class="">
-            <i class="fa-solid fa-car"></i>
-            <label for="vehicle">Jenis:</label>
-            <select name="vehicle" id="">
-                <option value="travel">Travel</option>
-                <option value="bus">Bus</option>
-              </select>
-        </div>
-        <button type="submit">Submit</button>
-    </section>
-</form>
+<div class="container">
+    <h1>Homepage</h1>
+    <div class="button-container">
+        <a href="{{ url_for('register') }}" class="button">Daftar Member Baru</a>
+        <a href="" class="button">Member Attendance</a>
+        <a href="" class="button">Lihat Kehadiran</a>
+        <a href="" class="button">Lihat Pengeluaran</a>
+    </div>
+</div>
 {% endblock %}
