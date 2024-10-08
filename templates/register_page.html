@@ -3,32 +3,28 @@
 {% block head %}
     <!-- Jinja2 syntax -->
     <link rel="stylesheet" href="{{url_for('static', filename='reg.css')}}">  
-
-    <!-- Normal syntax -->
-    <!-- <link rel="stylesheet" href="../static/reg.css"> -->
-
     <title>Register</title>
 {% endblock %}
 
 {% block body %}
 <h1>Register Page</h1>
-<form action="/register" method="post">
+<form action="/register" method="POST">
     <section id="reg">
-        <div>
+        <div class="input-icon">
             <i class="fa-solid fa-phone"></i>
-            <input type="text" name="phone" id="" placeholder="Input Nomor Hp">
+            <input type="text" name="phone" id="phone" placeholder="Input Nomor Hp">
         </div>
-        <div class="">
+        <div class="input-icon">
             <i class="fa-solid fa-user"></i>
-            <input type="text" name="name" id="" placeholder="Input Nama Lengkap">
+            <input type="text" name="name" id="name" placeholder="Input Nama Lengkap">
         </div>
-        <div class="">
+        <div class="input-icon">
             <i class="fa-solid fa-car"></i>
-            <label for="vehicle">Jenis:</label>
-            <select name="vehicle" id="">
+            <select name="type_" id="type_">
+                <option value="" disabled selected>Pilih Jenis</option>
                 <option value="travel">Travel</option>
                 <option value="bus">Bus</option>
-              </select>
+            </select>
         </div>
         <button type="submit">Submit</button>
     </section>

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{url_for('static', filename='home.css')}}">  
 
     <!-- Normal syntax -->
-    <!-- <link rel="stylesheet" href="../static/reg.css"> -->
+    <!-- <link rel="stylesheet" href="../static/home.css"> -->
 
     <title>Homepage</title>
 {% endblock %}
@@ -17,9 +17,10 @@
     <h1>Homepage</h1>
     <div class="button-container">
         <a href="{{ url_for('register') }}" class="button">Daftar Member Baru</a>
-        <a href="" class="button">Member Attendance</a>
-        <a href="" class="button">Lihat Kehadiran</a>
-        <a href="" class="button">Lihat Pengeluaran</a>
+        <a href="{{ url_for('attendance') }}" class="button">Member Attendance</a>
+        <a href="{{ url_for('view_attendance') }}" class="button">Lihat Kehadiran</a>
+        <a href="{{ url_for('view_spending') }}" class="button">Lihat Pengeluaran</a>
+        <a href="{{ url_for('view_member') }}" class="button">Lihat Seluruh Member</a>
     </div>
 </div>
 {% endblock %}

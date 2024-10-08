@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <!-- Jinja2 syntax -->
+    <link rel="stylesheet" href="{{url_for('static', filename='view_attendance.css')}}">  
+    <title>View Attendance</title>
+{% endblock %}
+
+{% block body %}
+<div class="content"> 
+    <h1 style="text-align: center;">View Attendance</h1>
+
+    {% if attendances|length < 1 %}
+    <h4 style="text-align: center;">Belum Ada Kehadiran</h4>
+    {% else %}
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Tanggal</th>
+            <th>Nomor Kehadiran</th>
+        </tr>
+        {% for attendance in attendances %}
+            <tr>
+                <td>{{ attendance.id }}</td>
+                <td>{{ attendance.attendance_date.date() }}</td>
+                <td>{{ attendance.num_attendance }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+    <a href="{{ url_for('homepage') }}" class="button">Kembali ke Menu Utama</a>
+</div>
+{% endblock %}
