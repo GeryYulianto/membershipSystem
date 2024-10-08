@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <!-- Jinja2 syntax -->
+    <link rel="stylesheet" href="{{url_for('static', filename='view_member.css')}}">  
+    <title>View All Member</title>
+{% endblock %}
+
+{% block body %}
+<div class="content"> 
+    <h1 style="text-align: center;">View All Member</h1>
+
+    {% if members|length < 1 %}
+    <h4 style="text-align: center;">Belum Ada Member</h4>
+    {% else %}
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nama Lengkap</th>
+            <th>Tipe</th>
+        </tr>
+        {% for member in members %}
+            <tr>
+                <td>{{ member.id }}</td>
+                <td>{{ member.name }}</td>
+                <td>{{ member.type }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+    <a href="{{ url_for('homepage') }}" class="button">Kembali ke Menu Utama</a>
+</div>
+{% endblock %}
