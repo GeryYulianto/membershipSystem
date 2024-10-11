@@ -27,7 +27,7 @@ def create_users_table():
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT NOT NULL,
         no_hp TEXT NOT NULL,
-        TYPE TEXT NOT NULL
+        type TEXT NOT NULL
     )
     '''
     query_db(create_table_query)

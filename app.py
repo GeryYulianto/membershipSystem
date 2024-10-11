@@ -34,18 +34,19 @@ def attendance():
 
 @app.route('/view_member')
 def view_member():
+    # query_db('INSERT INTO members (name,no_hp,type) VALUES(?,?,?)', ('Brian', '0811111111', 'bus'))
     members = query_db('SELECT * FROM members')
     return render_template('view_member_page.html', members=members)
 
 @app.route('/view_attendance')
 def view_attendance():
-    # get all data 
-    return render_template('view_member_attendance.html')
+    attendances = query_db('SELECT * FROM attendance')
+    return render_template('view_member_attendance.html', attendances = attendances)
 
 @app.route('/view_spending')
 def view_spending():
-    # get all data 
-    return render_template('view_spending.html')
+    spendings = query_db('SELECT * FROM payment')
+    return render_template('view_spending.html', spendings=spendings)
 
 if __name__ == "__main__":
     app.run(debug=True)

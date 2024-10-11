@@ -22,9 +22,9 @@
         </tr>
         {% for member in members %}
             <tr>
-                <td>{{ member.id }}</td>
-                <td>{{ member.name }}</td>
-                <td>{{ member.type }}</td>
+                <td>{{ member[0] }}</td>
+                <td>{{ member[1] }}</td>
+                <td>{{ member[3] }}</td>
             </tr>
         {% endfor %}
     </table>
