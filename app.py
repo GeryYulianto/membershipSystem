@@ -34,8 +34,8 @@ def attendance():
 
 @app.route('/view_member')
 def view_member():
-    # get all data from Member db
-    return render_template('view_member_page.html')
+    members = query_db('SELECT * FROM members')
+    return render_template('view_member_page.html', members=members)
 
 @app.route('/view_attendance')
 def view_attendance():

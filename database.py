@@ -8,6 +8,8 @@ def get_db():
     if db is None:
         db = g._database = sqlite3.connect(DATABASE)
         create_users_table()
+        create_transaction_table()
+        create_attendance_table()
     return db
 
 def query_db(query, args=(), one=False):
@@ -21,11 +23,32 @@ def query_db(query, args=(), one=False):
 #Migrations
 def create_users_table():
     create_table_query = '''
-    CREATE TABLE IF NOT EXISTS users (
+    CREATE TABLE IF NOT EXISTS members (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        username TEXT NOT NULL,
-        email TEXT NOT NULL,
-        password TEXT NOT NULL
+        name TEXT NOT NULL,
+        no_hp TEXT NOT NULL,
+        TYPE TEXT NOT NULL
+    )
+    '''
+    query_db(create_table_query)
+
+def create_attendance_table():
+    create_table_query = '''
+    CREATE TABLE IF NOT EXISTS attendance (
+        id INTEGER NOT NULL,
+        nomor_kehadiran INTEGER NOT NULL,
+        date_time DATETIME NOT NULL,
+        FOREIGN KEY (id) REFERENCES users(id)
+    )
+    '''
+    query_db(create_table_query)
+
+def create_transaction_table():
+    create_table_query = '''
+    CREATE TABLE IF NOT EXISTS payment (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        fee FLOAT NOT NULL,
+        date_time DATETIME NOT NULL
     )
     '''
     query_db(create_table_query)
