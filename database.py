@@ -52,3 +52,4 @@ def create_transaction_table():
     )
     '''
     query_db(create_table_query)
+    

@@ -14,11 +14,22 @@
             <i class="fa-solid fa-id-card"></i>
             <input type="text" name="id" id="id" placeholder="Search by ID">
         </div>
-        <div class="input-icon">
-            <i class="fa-solid fa-user"></i>
-            <input type="text" name="name" id="name" placeholder="Search by Name">
-        </div>
         <button type="submit">Search</button>
     </section>
 </form>
+
+<script>
+    function showAlert(message) {
+        alert(message);
+    }
+
+    {% if alert == 'no_id' %}
+        showAlert("Id tidak ditemukan!");
+    {% elif alert == 'no_time_gap' %}
+        showAlert("Belum memenuhi jangka waktu yang ditentukan!");
+    {% elif alert == 'success' %}
+        showAlert("Berhasil! Silahkan kembali ke homepage");
+    {% endif %}
+</script>
+
 {% endblock %}
