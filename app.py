@@ -66,16 +66,5 @@ def payment():
     spendings = query_db('SELECT * FROM payment')
     return render_template('view_spending.html', spendings=spendings)
 
-@app.route('/test', methods = ['GET'])
-def test():
-    return render_template('fee_member.html', id=1, type_='bus')
-    # response = app.test_client().post('/payment', data={
-    #     'id': 1,
-    #     'type_': 'bus'
-    # })
-    # return response.data
-
-
-
 if __name__ == "__main__":
     app.run(debug=True)
