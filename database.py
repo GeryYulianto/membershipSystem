@@ -46,9 +46,10 @@ def create_attendance_table():
 def create_transaction_table():
     create_table_query = '''
     CREATE TABLE IF NOT EXISTS payment (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        id INTEGER,
         fee FLOAT NOT NULL,
-        date_time DATETIME NOT NULL
+        date_time DATETIME NOT NULL,
+        FOREIGN KEY (id) REFERENCES users(id)
     )
     '''
     query_db(create_table_query)

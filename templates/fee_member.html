@@ -8,16 +8,20 @@
 
 {% block body %}
 <div class="content"> 
-    <h1 style="text-align: center;">Fee Member</h1>
-
-    {#
+    <h1 style="text-align: center;">Fee Member ID {{ id }}</h1>
     <!-- Kehadiran Ke 5 : Anda mendapat bayaran sebesar -->
     {% if type_ == "bus" %}
-    <!-- <h2> 500 rb rupiah </h2> -->
-    {% elif type_ == "bus" %}   
-    <!-- <h2> 250 rb rupiah </h2> -->
+    <h2> 50 ribu rupiah </h2>
+    {% elif type_ == "travel" %}   
+    <h2> 100 ribu rupiah </h2>
     {% endif %}
-    #}
+    
+    <form action="/payment", method="post">
+        <input type="hidden" value="{{ id }}" name="id">
+        <input type="hidden" value="{{ type_ }}" name="type_">
+        <button type="submit">Continue?</button>
+    </form>
+    
 
     <a href="{{ url_for('homepage') }}" class="button">Kembali ke Menu Utama</a>
 </div>

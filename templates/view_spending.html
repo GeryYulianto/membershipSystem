@@ -16,17 +16,15 @@
 
     <table>
         <tr>
-            <th>ID</th>
-            <th>Member Id</th>
+            <th>Member ID</th>
             <th>Besar Pengeluaran</th>
             <th>Tanggal Pengeluaran</th>
         </tr>
         {% for spending in spendings %}
             <tr>
-                <td>{{ spending.spending_id }}</td>
-                <td>{{ spending.id }}</td>
-                <td>{{ spending.spend }}</td>
-                <td>{{ spending.spending_date.date() }}</td>
+                <td>{{ spending[0] }}</td>
+                <td>{{ spending[1] }}</td>
+                <td>{{ spending[2] }}</td>
             </tr>
         {% endfor %}
     </table>

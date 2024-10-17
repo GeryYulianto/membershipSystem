@@ -50,10 +50,32 @@ def view_attendance():
     attendances = query_db('SELECT * FROM attendance')
     return render_template('view_member_attendance.html', attendances = attendances)
 
-@app.route('/view_spending')
-def view_spending():
+@app.route('/payment', methods=['GET', 'POST'])
+def payment():
+    if request.method == 'POST':
+        id = request.form['id']
+        type_ = request.form['type_']
+        if type_ == 'bus':
+            fee = 50000
+        else:
+            fee = 100000
+
+        current_time = datetime.datetime.now()
+        formatted_time = current_time.strftime("%Y-%m-%d %H:%M")
+        query_db('INSERT INTO payment (id,fee,date_time) values (?,?,?)', (id, fee, formatted_time))
     spendings = query_db('SELECT * FROM payment')
     return render_template('view_spending.html', spendings=spendings)
+
+@app.route('/test', methods = ['GET'])
+def test():
+    return render_template('fee_member.html', id=1, type_='bus')
+    # response = app.test_client().post('/payment', data={
+    #     'id': 1,
+    #     'type_': 'bus'
+    # })
+    # return response.data
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)

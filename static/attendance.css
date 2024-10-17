@@ -3,58 +3,14 @@ body {
     font-family: Arial, sans-serif;
 }
 
-h1 {
+.content {
+    display: flex;
+    flex-direction: column;
+    background-color: antiquewhite;
     text-align: center;
 }
 
-#attend {
-    border-radius: 20px;
-    padding: 20px;
-    background-color: #FFD09B;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    gap: 15px;
-    max-width: 300px;
-    margin: 0 auto;
-}
-
-#attend div {
-    width: 100%;
-}
-
-#attend input, #attend select {
-    width: 100%;
-    padding: 8px 8px 8px 35px; 
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-top: 5px;
-    box-sizing: border-box;  
-}
-
-#attend button {
-    border-radius: 10px;
-    padding: 10px 50px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-#attend button:hover {
-    background-color: #45a049;
-}
-
-.input-icon {
-    position: relative;
-    width: 100%;
-}
-
-.input-icon i {
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #888;
+table {
+    border: 2px solid black;
+    justify-content: center;
 }
