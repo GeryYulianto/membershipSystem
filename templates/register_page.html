@@ -12,16 +12,16 @@
     <section id="reg">
         <div class="input-icon">
             <i class="fa-solid fa-phone"></i>
-            <input type="text" name="phone" id="phone" placeholder="Input Nomor Hp">
+            <input type="number" name="phone" id="phone" placeholder="Input Nomor Hp" required>
         </div>
         <div class="input-icon">
             <i class="fa-solid fa-user"></i>
-            <input type="text" name="name" id="name" placeholder="Input Nama Lengkap">
+            <input type="text" name="name" id="name" placeholder="Input Nama Lengkap" required>
         </div>
         <div class="input-icon">
             <i class="fa-solid fa-car"></i>
             <select name="type_" id="type_">
-                <option value="" disabled selected>Pilih Jenis</option>
+                <option value="none">Pilih Jenis</option>
                 <option value="travel">Travel</option>
                 <option value="bus">Bus</option>
             </select>

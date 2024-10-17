@@ -10,6 +10,13 @@
 <div class="content"> 
     <h1 style="text-align: center;">View All Member</h1>
 
+    {#
+    {% if new_register True %}
+    <!-- get members.id new register / member[0][-1] -->
+    <!-- Format : Selamat datang {member.nama} dengan id: {member.id} -->
+    {% endif %}
+    #}
+
     {% if members|length < 1 %}
     <h4 style="text-align: center;">Belum Ada Member</h4>
     {% else %}

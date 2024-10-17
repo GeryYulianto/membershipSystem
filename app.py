@@ -14,11 +14,18 @@ def register():
         name = request.form['name']
         type_ = request.form['type_']
         
-        # save to db Member
+        # save to db 
         # id, phone, name, type_
         
-        return redirect(url_for('view_member'))
+        if type_ == 'travel' or type_ == 'bus':
+            return redirect(url_for('view_member'))
     return render_template('register_page.html')
+
+@app.route('/view_member')
+def view_member():
+    # query_db('INSERT INTO members (name,no_hp,type) VALUES(?,?,?)', ('Brian', '0811111111', 'bus'))
+    members = query_db('SELECT * FROM members')
+    return render_template('view_member_page.html', members=members)
 
 @app.route('/attendance', methods=['GET', 'POST'])
 def attendance():
@@ -26,17 +33,11 @@ def attendance():
         id = request.form['id']
         name = request.form['name']
         
-        # save to db Member
-        # id, phone, name, type_
+        # save to db 
+        # id, datetime
         
         return redirect(url_for('view_attendance'))
     return render_template('attendance_page.html')
-
-@app.route('/view_member')
-def view_member():
-    # query_db('INSERT INTO members (name,no_hp,type) VALUES(?,?,?)', ('Brian', '0811111111', 'bus'))
-    members = query_db('SELECT * FROM members')
-    return render_template('view_member_page.html', members=members)
 
 @app.route('/view_attendance')
 def view_attendance():
