@@ -35,7 +35,7 @@ def create_users_table():
 def create_attendance_table():
     create_table_query = '''
     CREATE TABLE IF NOT EXISTS attendance (
-        id INTEGER NOT NULL,
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
         nomor_kehadiran INTEGER NOT NULL,
         date_time DATETIME NOT NULL,
         FOREIGN KEY (id) REFERENCES users(id)

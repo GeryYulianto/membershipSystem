@@ -1,5 +1,6 @@
 from database import *
 from flask import *
+import datetime
 
 app = Flask(__name__)
 
@@ -13,19 +14,22 @@ def register():
         phone = request.form['phone']
         name = request.form['name']
         type_ = request.form['type_']
+
+        current_time = datetime.datetime.now()
+        formatted_time = current_time.strftime("%Y-%m-%d %H:%M")
         
-        # save to db 
-        # id, phone, name, type_
-        
-        if type_ == 'travel' or type_ == 'bus':
-            return redirect(url_for('view_member'))
-    return render_template('register_page.html')
+        query_db('INSERT INTO members (name,no_hp,type) values (?,?,?)', (name, phone, type_))
+
+        query_db('INSERT INTO attendance (nomor_kehadiran,date_time) values (?,?)', (0,formatted_time))
+        return view_member(name=name)
+    else:
+        return render_template('register_page.html')
 
 @app.route('/view_member')
-def view_member():
+def view_member(name=False):
     # query_db('INSERT INTO members (name,no_hp,type) VALUES(?,?,?)', ('Brian', '0811111111', 'bus'))
     members = query_db('SELECT * FROM members')
-    return render_template('view_member_page.html', members=members)
+    return render_template('view_member_page.html', members=members, name=name)
 
 @app.route('/attendance', methods=['GET', 'POST'])
 def attendance():
@@ -33,6 +37,8 @@ def attendance():
         id = request.form['id']
         name = request.form['name']
         
+    
+
         # save to db 
         # id, datetime
         
