@@ -1,0 +1,156 @@
+body {
+    background-color: blanchedalmond;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+.content {
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 15px;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+}
+
+h4 {
+    color: #666;
+    font-size: 1.2rem;
+}
+
+/* General Table Styling */
+table {
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+    border-collapse: separate;
+    border-spacing: 0;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+}
+
+th {
+    background-color: #FFD09B;
+    color: #333;
+    font-weight: 600;
+    padding: 12px 15px;
+    text-align: left;
+}
+
+th:first-child {
+    border-top-left-radius: 10px;
+}
+
+th:last-child {
+    border-top-right-radius: 10px;
+}
+
+td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tr:last-child td:first-child {
+    border-bottom-left-radius: 10px;
+}
+
+tr:last-child td:last-child {
+    border-bottom-right-radius: 10px;
+}
+
+tr:hover {
+    background-color: #f8f8f8;
+    transition: background-color 0.2s ease;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    margin-top: 20px;
+    transition: all 0.2s ease;
+}
+
+.button:hover {
+    background-color: #45a049;
+    transform: translateY(-1px);
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .content {
+        max-width: 100%;
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    /* Mobile Table Layout */
+    table {
+        border: 0;
+        box-shadow: none;
+    }
+
+    table thead {
+        display: none;
+    }
+
+    table tr {
+        display: block;
+        margin-bottom: 15px;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    table td {
+        display: block;
+        text-align: right;
+        padding: 10px 15px;
+        position: relative;
+        border-bottom: 1px solid #eee;
+    }
+
+    table td:last-child {
+        border-bottom: none;
+    }
+
+    /* General label for mobile view */
+    table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 15px;
+        font-weight: bold;
+        text-align: left;
+    }
+}
+
+/* Small Screen Adjustments */
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 1.3rem;
+    }
+
+    .button {
+        display: block;
+        text-align: center;
+        margin: 20px auto;
+    }
+}

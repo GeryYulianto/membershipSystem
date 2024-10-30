@@ -2,7 +2,7 @@
 
 {% block head %}
     <!-- Jinja2 syntax -->
-    <link rel="stylesheet" href="{{url_for('static', filename='view_spending.css')}}">  
+    <link rel="stylesheet" href="{{url_for('static', filename='view_table.css')}}">  
     <title>View Spendings</title>
 {% endblock %}
 
@@ -16,17 +16,15 @@
 
     <table>
         <tr>
-            <th>ID</th>
-            <th>Member Id</th>
+            <th>Member ID</th>
             <th>Besar Pengeluaran</th>
             <th>Tanggal Pengeluaran</th>
         </tr>
         {% for spending in spendings %}
             <tr>
-                <td>{{ spending.spending_id }}</td>
-                <td>{{ spending.id }}</td>
-                <td>{{ spending.spend }}</td>
-                <td>{{ spending.spending_date.date() }}</td>
+                <td data-label="Member ID">{{ spending[0] }}</td>
+                <td data-label="Besar Pengeluaran">{{ spending[1] }}</td>
+                <td data-label="Tanggal Pengeluaran">{{ spending[2] }}</td>
             </tr>
         {% endfor %}
     </table>

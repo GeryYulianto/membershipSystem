@@ -4,6 +4,11 @@ from datetime import datetime, timedelta
 
 app = Flask(__name__)
 
+## Global Variables
+BUS = 100_000
+TRAVEL = 50_000
+JUMLAH_KEHADIRAN = 5
+
 ## Index
 @app.route('/')
 def homepage():
@@ -17,23 +22,29 @@ def register():
         phone = request.form['phone']
         name = request.form['name']
         type_ = request.form['type_']
-        
-        # save to db 
-        # id, phone, name, type_
+
+        current_time = datetime.now()
+        formatted_time = current_time.strftime("%Y-%m-%d %H:%M")
         
         if type_ == 'travel' or type_ == 'bus':
-            return redirect(url_for('view_member'))
-    return render_template('register_page.html')
+            query_db('INSERT INTO members (name,no_hp,type) values (?,?,?)', (name, phone, type_))
+            query_db('INSERT INTO attendance (nomor_kehadiran,date_time) values (?,?)', (0,formatted_time))            
+            return view_member(name=name)
+        else : 
+            return render_template('register_page.html')       
+        
+    else:
+        return render_template('register_page.html')
 
 @app.route('/view_member')
-def view_member():
+def view_member(name=False):
     # query_db('INSERT INTO members (name,no_hp,type) VALUES(?,?,?)', ('Brian', '0811111111', 'bus'))
     members = query_db('SELECT * FROM members')
     return render_template('view_member_page.html', members=members)
 
 
 ## Attendance
-def attendance_gap(new_datetime, last_datetime, min_gap_hours=0.001): # ganti waktu yang diinginkan disini
+def attendance_gap(new_datetime, last_datetime, min_gap_hours=0): # ganti waktu yang diinginkan disini, 0.001
     if isinstance(new_datetime, str):
         new_datetime = datetime.strptime(new_datetime, '%Y-%m-%d %H:%M')
     if isinstance(last_datetime, str):
@@ -69,14 +80,27 @@ def attendance():
                 query_db('UPDATE attendance SET nomor_kehadiran = ?, date_time = ? WHERE id = ?', 
                          (new_kehadiran, current_time, id))
                 
-                if new_kehadiran % 5 == 0:
+                if new_kehadiran % JUMLAH_KEHADIRAN == 0:
                     type_ = query_db(f'SELECT type FROM members WHERE id="{id}";')
                     type_ = type_[0][0]
-                    return render_template('fee_member.html', id=id, type_=type_)
-                else: 
-                    alert = 'success' # alert berhasil
+                    
+                    alert = f'payment_{type_}' # sesuai type nya
+                    
+                    ## Payment
+                    # sekalian masukin ke table payment disini
+                    
+                    if type_ == 'bus':
+                        fee = JUMLAH_KEHADIRAN * BUS
+                    elif type_ == 'travel':
+                        fee = JUMLAH_KEHADIRAN * TRAVEL
+                    
+                    query_db('INSERT INTO payment (id,fee,date_time) values (?,?,?)', (id, fee, current_time))
+                    return redirect(url_for('view_attendance', alert=alert))
                 
-                return redirect(url_for('view_attendance'))
+                else: 
+                    alert = 'success' # 
+                
+                return redirect(url_for('view_attendance', alert=alert))
             else : 
                 alert = 'no_time_gap' # Alert belum memenuhi jangka waktu yang ditentukan
         
@@ -84,14 +108,14 @@ def attendance():
 
 @app.route('/view_attendance')
 def view_attendance():
+    alert = request.args.get('alert')  # mengambil alert dari query string
     attendances = query_db('SELECT * FROM attendance')
-    return render_template('view_member_attendance.html', attendances=attendances)
+    return render_template('view_member_attendance.html', attendances=attendances, alert=alert)
 
 
-## Spending
-@app.route('/view_spending')
-def view_spending():
-    spendings = query_db('SELECT * FROM spendings')
+@app.route('/payment')
+def payment():
+    spendings = query_db('SELECT * FROM payment')
     return render_template('view_spending.html', spendings=spendings)
 
 
@@ -99,7 +123,10 @@ def view_spending():
 @app.route('/test')
 def test():
     # query_db('INSERT INTO attendance (id,nomor_kehadiran,date_time) VALUES(?,?,?)', ("1", "0", '2024-10-17 09:45'))
-    # query_db('DELETE FROM attendance WHERE id = ?', (1,))
+    # query_db('DELETE FROM members')
+    # query_db('DELETE FROM attendance')
+    # query_db('DELETE FROM payment')
+    # query_db('DELETE FROM sqlite_sequence')
     return 
 
 if __name__ == "__main__":

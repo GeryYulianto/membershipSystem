@@ -1,12 +1,27 @@
 {% extends 'base.html' %}
 
 {% block head %}
-    <!-- Jinja2 syntax -->
-    <link rel="stylesheet" href="{{url_for('static', filename='view_attendance.css')}}">  
+    <link rel="stylesheet" href="{{url_for('static', filename='view_table.css')}}">  
     <title>View Attendance</title>
+        
+    <script>
+        function showAlert(message) {
+            alert(message);
+        }
+
+        window.onload = function() {
+            {% if alert == 'payment_travel' %}
+                showAlert("Kehadiran ke-5 : Mendapat Bayaran 250 Ribu Rupiah");
+            {% elif alert == 'payment_bus' %}
+                showAlert("Kehadiran ke-5 : Mendapat Bayaran 500 Ribu Rupiah");
+            {% endif %}
+        }
+    </script>
+    
 {% endblock %}
 
 {% block body %}
+
 <div class="content"> 
     <h1 style="text-align: center;">View Attendance</h1>
 
@@ -22,9 +37,9 @@
         </tr>
         {% for attendance in attendances %}
             <tr>
-                <td>{{ attendance[0] }}</td>
-                <td>{{ attendance[2] }}</td>
-                <td>{{ attendance[1] }}</td>
+                <td data-label="ID">{{ attendance[0] }}</td>
+                <td data-label="Tanggal">{{ attendance[2] }}</td>
+                <td data-label="Nomor Kehadiran">{{ attendance[1] }}</td>
             </tr>
         {% endfor %}
     </table>
@@ -32,4 +47,5 @@
 
     <a href="{{ url_for('homepage') }}" class="button">Kembali ke Menu Utama</a>
 </div>
+
 {% endblock %}
